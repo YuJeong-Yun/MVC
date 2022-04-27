@@ -64,6 +64,7 @@ public class BoardFrontController extends HttpServlet{
 			
 			// BoardListAction 객체 생성
 			action = new BoardListAction();
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

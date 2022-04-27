@@ -9,5 +9,6 @@
 	
 // 	response.sendRedirect("main/main.jsp");
 // 	response.sendRedirect("./itwill.bo");
-	response.sendRedirect("./BoardWrite.bo");
+// 	response.sendRedirect("./BoardWrite.bo");
+	response.sendRedirect("./BoardList.bo");
 %>
