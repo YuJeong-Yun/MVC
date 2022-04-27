@@ -1,0 +1,8 @@
+ * 상대주소
+	./BoardWrite.bo (가상주소)
+	=> ./ 의 의미는 프로젝트명(jspMVC)
+		[/jspMVC/BoardWrite.bo]
+	
+	./center/notice.jsp (실제주소)
+	=> ./ 의 의미는 WebContent
+		[WebContent/centernotice.jsp]
