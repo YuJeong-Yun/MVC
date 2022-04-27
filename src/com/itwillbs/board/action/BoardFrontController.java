@@ -63,6 +63,13 @@ public class BoardFrontController extends HttpServlet{
 			System.out.println(" C : DB사용ㅇ, 해당 페이지 출력 ");
 			
 			// BoardListAction 객체 생성
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
