@@ -71,6 +71,19 @@ public class BoardFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/BoardContent.bo")){
+			System.out.println(" C : /BoardContent.bo 호출");
+			System.out.println(" C : DB사용, 화면에 출력");
+			
+			// BoardContentAction 객체 생성
+			action = new BoardContentAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
