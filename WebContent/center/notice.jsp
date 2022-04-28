@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -37,21 +39,20 @@
 		<!-- 메인이미지 -->
 
 		<!-- 왼쪽메뉴 -->
-		<nav id="sub_menu">
-			<ul>
-				<li><a href="#">Notice</a></li>
-				<li><a href="#">Public News</a></li>
-				<li><a href="#">Driver Download</a></li>
-				<li><a href="#">Service Policy</a></li>
-			</ul>
-		</nav>
+			<jsp:include page="../inc/left.jsp"></jsp:include>
 		<!-- 왼쪽메뉴 -->
 		
 <%
 	// request 영역에 글정보(list) 저장
 	// request.setAttribute("boardList", boardList);
 	List boardList = (List)request.getAttribute("boardList");
-	System.out.println(" V : " + boardList);
+// 	System.out.println(" V : " + boardList);
+	String pageNum = (String)request.getAttribute("pageNum");
+	int result = (int)request.getAttribute("result");
+	int pageCount = (int)request.getAttribute("pageCount");
+	int pageBlock = (int)request.getAttribute("pageBlock");
+	int startPage = (int)request.getAttribute("startPage");
+	int endPage = (int) request.getAttribute("endPage");
 
 %>
 
@@ -67,29 +68,87 @@
 					<th class="tread">Read</th>
 				</tr>
 				
-				<%for(int i=0;i<boardList.size();i++) { 
-					BoardDTO dto = (BoardDTO)boardList.get(i);
-				%>
-				<tr>
-					<td><%= dto.getNum() %></td>
-					<td class="left"><%=dto.getSubject() %></td>
-					<td><%=dto.getName() %></td>
-					<td><%=dto.getDate() %></td>
-					<td><%=dto.getReadcount() %></td>
-				</tr>
-				<%} %>
+<%-- 				<%for(int i=0;i<boardList.size();i++) {  --%>
+<!--  					BoardDTO dto = (BoardDTO)boardList.get(i); -->
+<%-- 				%> --%>
+<!-- 				<tr> -->
+<%-- 					<td><%= dto.getNum() %></td> --%>
+<%-- 					<td class="left"><%=dto.getSubject() %></td> --%>
+<%-- 					<td><%=dto.getName() %></td> --%>
+<%-- 					<td><%=dto.getDate() %></td> --%>
+<%-- 					<td><%=dto.getReadcount() %></td> --%>
+<!-- 				</tr> -->
+<%-- 				<%} %> --%>
+
+				<c:forEach var="dto" items="${boardList }">
+					<tr>
+						<td>${dto.num }</td>
+						<td class="left">
+							<a href="./BoardContent.bo?num=${dto.num }&pageNum=<%=pageNum %>">${dto.subject }</a>
+						</td>
+						<td>${dto.name }</td>
+						<td>${dto.date }</td>
+						<td>${dto.readcount }</td>
+					</tr>
+				</c:forEach>
 				
 			</table>
 			<div id="table_search">
-				<input type="text" name="search" class="input_box"> <input
-					type="button" value="search" class="btn">
+				<input type="button" value="글쓰기" class="btn" onclick="location.href='./BoardWrite.bo';">
 			</div>
 			<div class="clear"></div>
+			
 			<div id="page_control">
-				<a href="#">Prev</a> <a href="#">1</a><a href="#">2</a><a href="#">3</a>
-				<a href="#">4</a><a href="#">5</a><a href="#">6</a> <a href="#">7</a><a
-					href="#">8</a><a href="#">9</a> <a href="#">10</a> <a href="#">Next</a>
+<!-- 				이전 -->
+<%-- 				<c:if test="${param.startPage } > ${param.pageBlock }"> --%>
+<%-- 					<a href="boardList.jsp?pageNum=${param.startPage - param.pageBlock }">Prev</a> --%>
+<%-- 				</c:if> --%>
+	
+<!-- 				1 2 3 4 .... 10 11 12 ...... 20 -->
+<%-- 				<c:forEach var="i" begin="${param.startPage }" end="${param.endPage }"> --%>
+<%-- 					<a href="boardList.jsp?pageNum=${i }">[${i }]</a> --%>
+<%-- 				</c:forEach> --%>
+	
+<!-- 				이후 -->
+<%-- 				<c:if test="${param.endPage } < ${param.pageCount }"> --%>
+<%-- 					<a href="boardList.jsp?pageNum=${param.startPage + param.pageBlock }">Next</a> --%>
+<%-- 				</c:if> --%>
+
+    	<%
+    	if(result != 0) {
+    		
+			// 이전
+		  		if(startPage > pageBlock){
+		  		%>
+		  		   <a href="./BoardList.bo?pageNum=<%=startPage-pageBlock%>">[이전]</a>
+		 		<%
+		   	}
+		   	
+		  		//  1 2 3 4 ... 10   11 12 13.... 20 
+		   	for(int i=startPage;i<=endPage;i++){
+		   		   %>
+		   		       <a href="./BoardList.bo?pageNum=<%=i%>">[<%=i %>]</a>      		   
+		   		   <% 		
+		   	}
+		  		
+		   	// 다음
+		   	if(endPage < pageCount){
+		   		%>
+		   		    <a href="./BoardList.bo?pageNum=<%=startPage+pageBlock%>">[다음]</a>
+		   		<%
+		   	}
+    	}
+    	%>
 			</div>
+			
+			
+			
+
+
+
+			
+			
+			
 		</article>
 		<!-- 게시판 -->
 		<!-- 본문들어가는 곳 -->
