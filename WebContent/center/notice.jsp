@@ -45,7 +45,7 @@
 <%
 	// request 영역에 글정보(list) 저장
 	// request.setAttribute("boardList", boardList);
-	List boardList = (List)request.getAttribute("boardList");
+// 	List boardList = (List)request.getAttribute("boardList");
 // 	System.out.println(" V : " + boardList);
 	String pageNum = (String)request.getAttribute("pageNum");
 	int result = (int)request.getAttribute("result");
@@ -93,6 +93,8 @@
 				</c:forEach>
 				
 			</table>
+			
+			
 			<div id="table_search">
 				<input type="button" value="글쓰기" class="btn" onclick="location.href='./BoardWrite.bo';">
 			</div>
@@ -114,9 +116,10 @@
 <%-- 					<a href="boardList.jsp?pageNum=${param.startPage + param.pageBlock }">Next</a> --%>
 <%-- 				</c:if> --%>
 
-    	<%
-    	if(result != 0) {
-    		
+		 <div id="page_control">
+		   	<%
+		   	if(result != 0){
+		   		
 			// 이전
 		  		if(startPage > pageBlock){
 		  		%>
@@ -137,16 +140,11 @@
 		   		    <a href="./BoardList.bo?pageNum=<%=startPage+pageBlock%>">[다음]</a>
 		   		<%
 		   	}
-    	}
-    	%>
-			</div>
-			
-			
-			
-
-
-
-			
+		   	
+		   	}
+		  		
+		   	%>
+		</div>
 			
 			
 		</article>
