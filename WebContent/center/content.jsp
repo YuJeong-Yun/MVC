@@ -115,7 +115,7 @@
 			<!-- 글번호(num), 페이지넘버(pageNum) -->
 				<input type="submit" value="수정" class="btn" id="upBtn">
 				<input type="submit" value="삭제" class="btn" id="delBtn">
-				<input type="submit" value="답글" class="btn" id="reBtn">
+				<input type="submit" value="답글" class="btn" id="reBtn" onclick="location.href='./BoardRewrite.bo?num=${dto.num}&re_ref=${dto.re_ref }&re_lev=${dto.re_lev }&re_seq=${dto.re_seq }'; ">
 				<input type="button" value="목록" class="btn" onclick="location.href='./BoardList.bo?pageNum=<%=request.getParameter("pageNum") %>';">
 			</div>
 			<div class="clear"></div>

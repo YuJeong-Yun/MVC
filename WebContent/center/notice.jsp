@@ -84,6 +84,10 @@
 					<tr>
 						<td>${dto.num }</td>
 						<td class="left">
+							<c:if test="${dto.re_lev > 0 }">
+								<img src="./images/center/level.gif" width="${dto.re_lev * 10 }">
+								<img src="./images/center/re.gif">
+							</c:if>
 							<a href="./BoardContent.bo?num=${dto.num }&pageNum=<%=pageNum %>">${dto.subject }</a>
 						</td>
 						<td>${dto.name }</td>

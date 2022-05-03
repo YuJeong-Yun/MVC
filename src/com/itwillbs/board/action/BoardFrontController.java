@@ -122,7 +122,7 @@ public class BoardFrontController extends HttpServlet{
 			
 		}else if(command.equals("/BoardDeleteAction.bo")){
 			System.out.println(" C : /BoardDeleteAction.bo 호출");
-			System.out.println(" C :DB사용, 페이지 이동 ");
+			System.out.println(" C : DB사용, 페이지 이동 ");
 			
 			// BoardDeleteAction 객체 생성
 			action = new BoardDeleteAction();
@@ -133,7 +133,29 @@ public class BoardFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/BoardRewrite.bo")){
+			System.out.println(" C : /BoardRewrite.bo 호출");
+			System.out.println(" C : DB 사용x, view 출력");
+			
+			forward = new ActionForward();
+			forward.setPath("./center/boardReWrite.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/BoardReWriteAction.bo")){
+			System.out.println(" C : /BoardReWriteAction.bo 호출 ");
+			System.out.println(" C : 디비 사용O, 페이지이동 ");
+			
+			// BoardReWriteAction 객체 생성
+			action = new BoardReWriteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
+		
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
 		//////////////////////////////2. 가상 주소 매핑 /////////////////////////////////
