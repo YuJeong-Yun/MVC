@@ -8,7 +8,7 @@
 	<div class="clear"></div>
 	<!-- 로고들어가는 곳 -->
 	<div id="logo">
-		<img src="../images/logo.gif" width="265" height="62" alt="Fun Web">
+		<img src="./images/logo.gif" width="265" height="62" alt="Fun Web">
 	</div>
 	<!-- 로고들어가는 곳 -->
 	<nav id="top_menu">

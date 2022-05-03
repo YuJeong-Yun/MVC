@@ -9,8 +9,8 @@
 		4315 Fax +82 64 123 4321
 	</div>
 	<div id="social">
-		<img src="../images/facebook.gif" width="33" height="33"
-			alt="Facebook"> <img src="../images/twitter.gif" width="34"
+		<img src="./images/facebook.gif" width="33" height="33"
+			alt="Facebook"> <img src="./images/twitter.gif" width="34"
 			height="34" alt="Twitter">
 	</div>
 </footer>
