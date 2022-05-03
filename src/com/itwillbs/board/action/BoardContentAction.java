@@ -33,6 +33,7 @@ public class BoardContentAction implements Action {
 		// request 영역에 글정보를 저장
 		request.setAttribute("dto", dto);
 //		request.setAttribute("dto", dao.getBoard(num)); // 데이터 전달만 할 경우 이 방식으로 사용해도 OK
+		request.setAttribute("pageNum", pageNum);
 		
 		// 페이지 이동(출력) (./center/content.jsp)
 		ActionForward forward = new ActionForward();

@@ -25,6 +25,23 @@
 
  </script>
  <![endif]-->
+ <script src="./script/jquery-3.6.0.min.js"></script>
+ <script type="text/javascript">
+ 	$(function(){
+		// 수정 버튼 클릭 시 수정 페이지로 이동(정보 포함)
+ 		$('#upBtn').click(function(){
+ 			// 폼태그의 action 페이지를 설정
+ 			$('#fr').attr('action','./BoardUpdate.bo');
+ 			
+ 			// 폼 태그, 전달방식을 변경
+ 			$('#fr').attr('method','get');
+ 			
+ 			// 글번호를 가지고 수정페이지로 이동(submit)
+ 			$('#fr').submit();
+ 		});
+ 	});
+ </script>
+ 
 </head>
 <body>
 	<div id="wrap">
@@ -55,9 +72,9 @@
 			
 			<!-- jQuery를 사용하여 submit 동작 실행  -->
 			<!-- form 태그 안에 submit 버튼이 있어야 동작함 -->
-			
 			<form method="post" id="fr">
-			
+				<input type="hidden" name="num" value="${dto.num }">
+				<input type="hidden" name="pageNum" value="${pageNum }">
 			</form>
 			
 			<table id="notice">
@@ -92,10 +109,11 @@
 			</table>
 			<div id="table_search">
 			<!-- 글번호(num), 페이지넘버(pageNum) -->
-				<input type="submit" value="수정" class="btn" >
-				<input type="submit" value="삭제" class="btn">
-				<input type="submit" value="답글" class="btn">
+				<input type="submit" value="수정" class="btn" id="upBtn">
+				<input type="submit" value="삭제" class="btn" id="delBtn">
+				<input type="submit" value="답글" class="btn" id="reBtn">
 				<input type="button" value="목록" class="btn" onclick="location.href='./BoardList.bo?pageNum=<%=request.getParameter("pageNum") %>';">
+			</div>
 			<div class="clear"></div>
 		</article>
 		<!-- 게시판 -->

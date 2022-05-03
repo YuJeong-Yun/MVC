@@ -16,7 +16,7 @@ public class BoardFrontController extends HttpServlet{
 		System.out.println(" GET/POST방식 모두 처리!! \n");
 		
 		//////////////////////////////1. 가상 주소 계산 /////////////////////////////////
-		System.out.println(" C :1. 가상 주고 계산 시작");
+		System.out.println(" C :1. 가상 주소 계산 시작");
 		
 		// 가상주소 가져오기
 		String requestURI =	request.getRequestURI();
@@ -81,6 +81,33 @@ public class BoardFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 				System.out.println(" c : " + forward);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/BoardUpdate.bo")){
+			System.out.println(" C : /BoardUpdate.bo 호출 ");
+			System.out.println(" C : DB정보 가져와서, 화면에 출력 ");
+			
+			// BoardUpdateAction 객체 생성
+			action = new BoardUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+				System.out.println(" C : " + forward);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/BoardUpdateProAction.bo")){
+			System.out.println(" C : /BoardUpdateProAction.bo 호출 ");
+			System.out.println(" C : DB사용(수정), 페이지 이동 ");
+			
+			// BoardUpdateProAction 객체 생성
+			action = new BoardUpdateProAction();
+			
+			try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
