@@ -391,7 +391,7 @@ public class BoardDAO {
 		
 		
 		// 글 삭제하는 메서드
-		public int deleteBoard(BoardDTO bb) {
+		public int deleteBoard(BoardDTO deBB) {
 			int result = -1;
 			
 			try {
@@ -402,7 +402,7 @@ public class BoardDAO {
 				sql = "select pass from itwill_board where num=?";
 				pstmt = con.prepareStatement(sql);
 				// ???
-				pstmt.setInt(1, bb.getNum());
+				pstmt.setInt(1, deBB.getNum());
 				
 				// 4. sql 실행
 				rs = pstmt.executeQuery();
@@ -410,12 +410,12 @@ public class BoardDAO {
 				// 5. 데이터 처리
 				if(rs.next()) {
 					// 비밀번호 일치 => 글 삭제
-					if(bb.getPass().equals(rs.getString("pass"))) {
+					if(deBB.getPass().equals(rs.getString("pass"))) {
 						// 3. sql 작성 & pstmt 객체
 						sql = "delete from itwill_board where num=?";
 						pstmt = con.prepareStatement(sql);
 						// ???
-						pstmt.setInt(1, bb.getNum());
+						pstmt.setInt(1, deBB.getNum());
 						
 						// 4. sql 실행
 						// pstmt.executeUpdate()는 실행된 row 수를 반환함

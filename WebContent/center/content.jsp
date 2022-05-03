@@ -32,14 +32,18 @@
  		$('#upBtn').click(function(){
  			// 폼태그의 action 페이지를 설정
  			$('#fr').attr('action','./BoardUpdate.bo');
- 			
- 			// 폼 태그, 전달방식을 변경
- 			$('#fr').attr('method','get');
- 			
  			// 글번호를 가지고 수정페이지로 이동(submit)
  			$('#fr').submit();
- 		});
- 	});
+ 		}); // 수정버튼
+
+ 		// 삭제버튼
+ 		$('#delBtn').click(function() {
+ 			$('#fr').attr('action', './BoardDelete.bo');
+ 			$('#fr').submit();
+ 		}); // 삭제버튼
+ 		
+ 		
+ 	}); //jQuery
  </script>
  
 </head>
@@ -72,7 +76,7 @@
 			
 			<!-- jQuery를 사용하여 submit 동작 실행  -->
 			<!-- form 태그 안에 submit 버튼이 있어야 동작함 -->
-			<form method="post" id="fr">
+			<form method="get" id="fr">
 				<input type="hidden" name="num" value="${dto.num }">
 				<input type="hidden" name="pageNum" value="${pageNum }">
 			</form>

@@ -1,5 +1,7 @@
 package com.itwillbs.board.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,6 +31,7 @@ public class BoardContentAction implements Action {
 		// 글번호에 해당하는 글 전체의 정보를 가져오기
 		BoardDTO dto = dao.getBoard(num);
 		System.out.println(" M :글정보 1개 조회 완료");
+		
 		
 		// request 영역에 글정보를 저장
 		request.setAttribute("dto", dto);

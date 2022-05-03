@@ -112,6 +112,27 @@ public class BoardFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/BoardDelete.bo")){
+			System.out.println(" C : /BoardDelete.bo 호출 ");
+			System.out.println(" C : DB사용X, 화면출력(view)");
+			
+			forward = new ActionForward();
+			forward.setPath("./center/deleteForm.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/BoardDeleteAction.bo")){
+			System.out.println(" C : /BoardDeleteAction.bo 호출");
+			System.out.println(" C :DB사용, 페이지 이동 ");
+			
+			// BoardDeleteAction 객체 생성
+			action = new BoardDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
