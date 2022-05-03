@@ -80,6 +80,7 @@ public class BoardFrontController extends HttpServlet{
 			
 			try {
 				forward = action.execute(request, response);
+				System.out.println(" c : " + forward);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

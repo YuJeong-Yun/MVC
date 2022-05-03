@@ -24,4 +24,11 @@ public class ActionForward {
 		this.isRedirect = isRedirect;
 	}
 
+	@Override
+	public String toString() {
+		return "ActionForward [path=" + path + ", isRedirect=" + isRedirect + "]";
+	}
+	
+	
+
 }
