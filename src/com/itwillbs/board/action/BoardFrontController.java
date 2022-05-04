@@ -154,6 +154,29 @@ public class BoardFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/BoardFileUpload.bo")){
+			System.out.println(" C : /BoardFileUpload.bo 호출" );
+			System.out.println(" C : DB사용 X, view 페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./center/boardUpload.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/BoardFileUploadAction.bo")){
+			System.out.println(" C : /BoardFileUploadAction.bo 호출");
+			System.out.println(" C : 업로드, DB사용 ㅇ, view페이지 이동");
+			
+			// BoardFileUploadAction 객체
+			action = new BoardFileUploadAction();
+			
+			//exeucte 호출
+			try {
+				forward = action.execute(request, response);
+				System.out.println(" C forward: " + forward);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

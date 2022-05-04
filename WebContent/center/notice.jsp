@@ -89,6 +89,9 @@
 								<img src="./images/center/re.gif">
 							</c:if>
 							<a href="./BoardContent.bo?num=${dto.num }&pageNum=<%=pageNum %>">${dto.subject }</a>
+							<c:if test="${dto.file != null }">
+								<img src="./images/center/save.png" width="20" hegith="20">
+							</c:if>
 						</td>
 						<td>${dto.name }</td>
 						<td>${dto.date }</td>
