@@ -111,6 +111,23 @@ border-radius:10px;color: #FFF;
 background-image: url("../images/center/t_back.jpg");
 background-repeat: repeat-x;
 background-position: center center}
+
+#btn {
+padding: 2px;
+    margin: 0 0 0 215px;
+    width: 90px;
+    height: 23px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    color: #FFF;
+    background-image: url(../images/center/t_back.jpg);
+    background-repeat: repeat-x;
+    background-position: center center;
+}
+
+
+
+
 /*안여백 2px 밖여백 0 0 0 5px
 너비 90 높이 23 테두리 1 solid #999 테두리둥글게 10px
 글자색 #FFF 

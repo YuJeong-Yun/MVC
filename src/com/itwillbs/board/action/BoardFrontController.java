@@ -169,7 +169,7 @@ public class BoardFrontController extends HttpServlet{
 			// BoardFileUploadAction 객체
 			action = new BoardFileUploadAction();
 			
-			//exeucte 호출
+			//execute 호출
 			try {
 				forward = action.execute(request, response);
 				System.out.println(" C forward: " + forward);
@@ -177,6 +177,19 @@ public class BoardFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/BoardSearch.bo")){
+			System.out.println(" C : /BoardSearch.bo 호출 ");
+			System.out.println(" C : DB사용, 페이지에서 출력");
+			
+			// BoardSearchAction 객체 생성
+			action = new BoardSearchAction();
+			
+			try {
+				forward = action.execute(request, response);
+				System.out.println(" C forward : " + forward);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

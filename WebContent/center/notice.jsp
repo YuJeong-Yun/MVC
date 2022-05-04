@@ -48,11 +48,17 @@
 // 	List boardList = (List)request.getAttribute("boardList");
 // 	System.out.println(" V : " + boardList);
 	String pageNum = (String)request.getAttribute("pageNum");
-	int result = (int)request.getAttribute("result");
+	System.out.println("pageNum "+pageNum);
+	int result = (int)request.getAttribute("result"); // 글 개수
+	System.out.println("result : "+result);
 	int pageCount = (int)request.getAttribute("pageCount");
+	System.out.println("pageCount "+pageCount);
 	int pageBlock = (int)request.getAttribute("pageBlock");
+	System.out.println("pageBlock"+pageBlock);
 	int startPage = (int)request.getAttribute("startPage");
+	System.out.println("startPage"+startPage);
 	int endPage = (int) request.getAttribute("endPage");
+	System.out.println("endPage"+endPage);
 
 %>
 
@@ -103,9 +109,20 @@
 			
 			
 			<div id="table_search">
-			<input type="text" name="search" class="input_box">
-			<input type="button" name="search" class="btn">
-				<input type="button" value="글쓰기" class="btn" onclick="location.href='./BoardWrite.bo';">
+				<!-- 검색창 동작 -->
+				<form action="./BoardSearch.bo" method="get">
+					<input type="hidden" name="result" value="<%=result %>">
+					<input type="hidden" name="pageCount" value="<%=pageCount %>">
+					<input type="hidden" name="pageBlock" value="<%=pageBlock %>">
+					<input type="hidden" name="startPage" value="<%=startPage %>">
+					<input type="hidden" name="endPage" value="<%=endPage %>">
+					
+					<input type="text" name="search" class="input_box">
+					<input type="submit" value="serach" name="search" class="btn">
+				</form>
+				<!-- 검색창 동작 -->
+				<hr>
+				<input type="button" value="글쓰기" id="btn" onclick="location.href='./BoardWrite.bo';">
 			</div>
 			<div class="clear"></div>
 			
