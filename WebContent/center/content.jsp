@@ -107,7 +107,7 @@
 					<td colspan="4">
 						<a href="./upload/${dto.file }">${dto.file }</a>
 						<HR>
-						<a href="/center/fileDown.jsp?fileName=${dto.file }">${dto.file }</a>	
+						<a href="./center/fileDown.jsp?fileName=${dto.file }">${dto.file }</a>	
 					</td>
 				</tr>
 				<tr>
