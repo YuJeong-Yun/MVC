@@ -22,6 +22,18 @@
   
   
   
+	<!--   관리자 상품 등록 -->
+   <servlet>
+     <servlet-name>AdminGoodsFrontController</servlet-name>
+     <servlet-class>com.itwillbs.admin.goods.action.AdminGoodsFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>AdminGoodsFrontController</servlet-name>
+     <url-pattern>*.ag</url-pattern>  
+  </servlet-mapping>
+	<!--   관리자 상품 등록 -->
+  
   
   
   <!-- 한글처리하기 -->
