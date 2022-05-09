@@ -12,8 +12,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
-
-
 public class BoardDAO {
 	// 디비에 itwill_board 테이블과 관련된 모든 동작을 처리
 	

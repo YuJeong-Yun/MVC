@@ -8,17 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.board.action.Action;
-import com.itwillbs.board.action.ActionForward;
-import com.itwillbs.board.action.BoardContentAction;
-import com.itwillbs.board.action.BoardDeleteAction;
-import com.itwillbs.board.action.BoardFileUploadAction;
-import com.itwillbs.board.action.BoardListAction;
-import com.itwillbs.board.action.BoardReWriteAction;
-import com.itwillbs.board.action.BoardSearchAction;
-import com.itwillbs.board.action.BoardUpdateAction;
-import com.itwillbs.board.action.BoardUpdateProAction;
-import com.itwillbs.board.action.BoardWriteAction;
+import com.itwillbs.admin.goods.action.Action;
+import com.itwillbs.admin.goods.action.ActionForward;
+
 
 public class AdminGoodsFrontController extends HttpServlet {
 
@@ -49,6 +41,28 @@ public class AdminGoodsFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
+		if(command.equals("/GoodsAdd.ag")) {
+			System.out.println(" C : /GoodsAdd.ag 호출 ");
+			// DB 사용 x, view 페이지 이동
+			
+			forward = new ActionForward();
+			forward.setPath("./adminGoods/admin_goods_write.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.contentEquals("/GoodsAddAction.ag")) {
+			System.out.println(" C : /GoodsAddAction.ag 호출 ");
+			// DB 사용 O, 페이지 이동
+			
+			// GoodsAddAction 객체
+			 action = new GoodsAddAction();
+			 
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
 		//////////////////////////////2. 가상 주소 매핑 /////////////////////////////////

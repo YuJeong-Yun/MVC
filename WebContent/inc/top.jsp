@@ -14,9 +14,9 @@
 	<nav id="top_menu">
 		<ul>
 			<li><a href="../main/main.jsp">HOME</a></li>
-			<li><a href="../company/welcome.jsp">COMPANY</a></li>
 			<li><a href="#">SOLUTIONS</a></li>
-			<li><a href="../center/notice.jsp">CUSTOMER CENTER</a></li>
+			<li><a href="./BoardList.bo">CUSTOMER CENTER</a></li>
+			<li><a href="./GoodsAdd.ag">WILL SHOP</a></li>
 			<li><a href="#">CONTACT US</a></li>
 		</ul>
 	</nav>
