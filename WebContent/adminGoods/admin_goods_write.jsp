@@ -36,14 +36,7 @@
 		<div id="sub_img"></div>
 		<!-- 서브페이지 메인이미지 -->
 		<!-- 왼쪽메뉴 -->
-		<nav id="sub_menu">
-			<ul>
-				<li><a href="#">Welcome</a></li>
-				<li><a href="#">History</a></li>
-				<li><a href="#">Newsroom</a></li>
-				<li><a href="#">Public Policy</a></li>
-			</ul>
-		</nav>
+		<jsp:include page="../inc/left.jsp"></jsp:include>
 		<!-- 왼쪽메뉴 -->
 		<!-- 내용 -->
 		<!-- 게시판 -->

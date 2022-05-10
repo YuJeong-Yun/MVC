@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.itwillbs.board.action.ActionForward;
 
 public class AdminGoodsDAO {
 
@@ -97,8 +101,50 @@ public class AdminGoodsDAO {
 		} finally {
 			closeDB();
 		}
-
-		
 	} // insertGoods
+	
+	
+	// getGoodsList()
+	public List<GoodsDTO> getGoodsList() {
+		
+		List<GoodsDTO> goodsList = new ArrayList<GoodsDTO>();
+		
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			// 3. sql 작성 (select) & pstmt 객체
+			sql = "select * from itwill_goods";
+			pstmt = con.prepareStatement(sql);
+			// 4. slq 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터처리 (DB -> DTO -> Array)
+			while(rs.next()){
+				GoodsDTO dto = new GoodsDTO();
+				
+				dto.setAmount(rs.getInt("amount"));
+				dto.setBest(rs.getInt("best"));
+				dto.setCategory(rs.getString("category"));
+				dto.setColor(rs.getString("color"));
+				dto.setContent(rs.getString("content"));
+				dto.setDate(rs.getDate("date"));
+				dto.setImage(rs.getString("image"));
+				dto.setName(rs.getString("name"));
+				dto.setNum(rs.getInt("num"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSize(rs.getString("size"));
+				
+				goodsList.add(dto);
+			}
+			System.out.println(" DAO : 관리자 상품목록 조회 성공 ");
+			
+		} catch (Exception e) {
+			System.out.println(" DAO : 관리자 상품목록 조회 실패 ");
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return goodsList;
+	} // getGodosList
 
 }

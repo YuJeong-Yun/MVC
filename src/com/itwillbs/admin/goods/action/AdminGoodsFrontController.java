@@ -57,12 +57,26 @@ public class AdminGoodsFrontController extends HttpServlet {
 			 action = new GoodsAddAction();
 			 
 			try {
-				action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		}
+		}else if(command.equals("/GoodsList.ag")) {
+			System.out.println(" C : /GoodsList.age 호출 ");
+			// DB 사용 O, view 출력
+			
+			// GoodsListAction 객체 생성
+			action = new GoodsListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		}	
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
 		//////////////////////////////2. 가상 주소 매핑 /////////////////////////////////
