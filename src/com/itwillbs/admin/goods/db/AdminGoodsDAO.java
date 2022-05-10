@@ -145,6 +145,85 @@ public class AdminGoodsDAO {
 		}
 		
 		return goodsList;
-	} // getGodosList
+	} // getGoodsList
+	
+	
+	// getGoods(num)
+	public GoodsDTO getGoods(int num) {
+		GoodsDTO dto = null;
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();
+			
+			// 3. sql 작성 & pstmt 객체 생성
+			sql = "select * from itwill_goods where num = ?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setInt(1, num);
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+
+			if(rs.next()) {
+				dto = new GoodsDTO();
+				
+				dto.setAmount(rs.getInt("amount"));
+				dto.setBest(rs.getInt("best"));
+				dto.setCategory(rs.getString("category"));
+				dto.setColor(rs.getString("color"));
+				dto.setContent(rs.getString("content"));
+				dto.setDate(rs.getDate("date"));
+				dto.setImage(rs.getString("image"));
+				dto.setName(rs.getString("name"));
+				dto.setNum(rs.getInt("num"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSize(rs.getString("size"));
+			}
+			System.out.println(" DAO : "+num+"번 상품정보 저장완료 ");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return dto;
+	} // getGoods(num)
+
+
+	// modifyGoods()
+	public void modifyGoods(GoodsDTO dto) {
+		
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			
+			// 3. sql 작성 & pstmt 객체
+			sql = "update itwill_goods set category=?,price=?,name=?,color=?,amount=?,size=?,content=?,best=? where num=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setString(1, dto.getCategory());
+			pstmt.setInt(2, dto.getPrice());
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getColor());
+			pstmt.setInt(5, dto.getAmount());
+			pstmt.setString(6, dto.getSize());
+			pstmt.setString(7, dto.getContent());
+			pstmt.setInt(8, dto.getBest());
+			pstmt.setInt(9, dto.getNum());
+			
+			// 4. sql 실행 
+			pstmt.executeUpdate();
+			
+			System.out.println(" DAO : 관리자 상품 정보 수정 완료");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+	} // modifyGoods()
 
 }
