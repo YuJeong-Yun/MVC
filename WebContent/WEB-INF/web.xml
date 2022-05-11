@@ -38,7 +38,7 @@
 	<!-- 사용자 상품 처리 -->
 	<servlet>
 		<servlet-name>GoodsFrontController</servlet-name>
-		<servlet-class>com.itwillbs.admin.goods.action.GoodsFrontController</servlet-class>
+		<servlet-class>com.itwillbs.goods.action.GoodsFrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

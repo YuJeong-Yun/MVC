@@ -6,3 +6,22 @@
 	./center/notice.jsp (실제주소)
 	=> ./ 의 의미는 WebContent
 		[WebContent/centernotice.jsp]
+		
+		
+		
+		
+		
+ 
+ * 
+  String			
+   - 문자열				
+   - 버퍼X				
+   - 실행된 메서드의 결과 저장 X
+   - String str = new String("hello");
+   
+  StringBuffer
+   - 문자열
+   - 버퍼O
+   - 실행된 메서드의 결과 저장 o
+   - StringBuffer buf = new StringBuffer();
+   - buf.append("hello");
