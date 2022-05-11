@@ -223,7 +223,31 @@ public class AdminGoodsDAO {
 		} finally {
 			closeDB();
 		}
-		
 	} // modifyGoods()
+
+
+	// deleteGoods(num)
+	public void deleteGoods(int num) {
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();
+			
+			// 3. sql 작성 & pstmt 객체
+			sql = "delete from itwill_goods where num=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setInt(1, num);
+			
+			// 4. sql 실행
+			pstmt.executeUpdate();
+			
+			System.out.println(" DAO : 관리자 상품 정보 삭제 완료 ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	} // deleteGoods(num)
 
 }

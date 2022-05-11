@@ -11,5 +11,7 @@
 // 	response.sendRedirect("./itwill.bo");
 // 	response.sendRedirect("./BoardWrite.bo");
 // 	response.sendRedirect("./BoardList.bo");
-	response.sendRedirect("./GoodsList.ag");
+// 	response.sendRedirect("./GoodsList.ag");
+ 	response.sendRedirect("./GoodsList.go");
+
 %>

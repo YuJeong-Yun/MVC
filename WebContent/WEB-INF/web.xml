@@ -23,16 +23,29 @@
   
   
 	<!--   관리자 상품 등록 -->
-   <servlet>
-     <servlet-name>AdminGoodsFrontController</servlet-name>
-     <servlet-class>com.itwillbs.admin.goods.action.AdminGoodsFrontController</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-     <servlet-name>AdminGoodsFrontController</servlet-name>
-     <url-pattern>*.ag</url-pattern>  
-  </servlet-mapping>
+	   <servlet>
+	     <servlet-name>AdminGoodsFrontController</servlet-name>
+	     <servlet-class>com.itwillbs.admin.goods.action.AdminGoodsFrontController</servlet-class>
+	  </servlet>
+	  
+	  <servlet-mapping>
+	     <servlet-name>AdminGoodsFrontController</servlet-name>
+	     <url-pattern>*.ag</url-pattern>  
+	  </servlet-mapping>
 	<!--   관리자 상품 등록 -->
+
+
+	<!-- 사용자 상품 처리 -->
+	<servlet>
+		<servlet-name>GoodsFrontController</servlet-name>
+		<servlet-class>com.itwillbs.admin.goods.action.GoodsFrontController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GoodsFrontController</servlet-name>
+		<url-pattern>*.go</url-pattern>
+	</servlet-mapping>
+	<!-- 사용자 상품 처리 -->
   
   
   

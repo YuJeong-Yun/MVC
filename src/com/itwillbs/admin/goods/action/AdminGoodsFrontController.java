@@ -101,6 +101,19 @@ public class AdminGoodsFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/GoodsDeleteAction.ag")) {
+			System.out.println(" C : /GoodsDeleteAction.ag 호출");
+			// DB 사용 ㅇ, 페이지 이동(list)
+			
+			// GoodsDeleteAction 객체 생성
+			action = new GoodsDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");

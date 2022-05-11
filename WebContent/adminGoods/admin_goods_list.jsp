@@ -91,7 +91,9 @@
 						<td>${goods.amount }</td>
 						<td>${goods.date }</td>
 						<td>
-							<a href="./GoodsModify.ag?num=${goods.num }">수정/삭제</a>
+							<a href="./GoodsModify.ag?num=${goods.num }">수정</a>
+							<br>
+							<a href="./GoodsDeleteAction.ag?num=${goods.num }">삭제</a>
 						</td>
 					</tr>
 				</c:forEach>
