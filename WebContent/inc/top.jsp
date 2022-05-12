@@ -16,8 +16,8 @@
 			<li><a href="../main/main.jsp">HOME</a></li>
 			<li><a href="#">SOLUTIONS</a></li>
 			<li><a href="./BoardList.bo">CUSTOMER CENTER</a></li>
-			<li><a href="./GoodsAdd.ag">WILL SHOP</a></li>
-			<li><a href="#">CONTACT US</a></li>
+			<li><a href="./GoodsList.go">WILL SHOP</a></li>
+			<li><a href="./GoodsList.ag">Admin Shop</a></li>
 		</ul>
 	</nav>
 </header>

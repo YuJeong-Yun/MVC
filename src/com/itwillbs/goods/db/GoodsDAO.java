@@ -100,5 +100,112 @@ public class GoodsDAO {
 		
 		return goodsList;
 	} // getGoodsList
+	
+	
+	// getGoodsList()
+	public List<GoodsDTO> getGoodsList(String item) {
+		List<GoodsDTO> goodsList = new ArrayList<GoodsDTO>();
+		StringBuffer SQL = new StringBuffer();
+		
+		try {
+			// 1.2. 디비 연결
+			con=getCon();
+			
+			// 3.sql 작성 & pstmt 객체
+//			sql = "select * from itwill_goods where all/category/best";
+			SQL.append("select * from itwill_goods ");
+			if(item.equals("all")) { }
+			else if(item.equals("best")) {
+				SQL.append("where best=? ");
+			}else {
+				SQL.append("where category=?");
+			}
+			
+			pstmt = con.prepareStatement(SQL+"");
+			// ???
+			if(item.equals("all")) {}
+			else if(item.equals("best")) {
+				pstmt.setInt(1, 1);
+			}else {
+				pstmt.setString(1, item);
+			}
+			
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			while(rs.next()) {
+				GoodsDTO dto = new GoodsDTO();
+				
+				dto.setAmount(rs.getInt("amount"));
+				dto.setBest(rs.getInt("best"));
+				dto.setCategory(rs.getString("category"));
+				dto.setColor(rs.getString("color"));
+				dto.setContent(rs.getString("content"));
+				dto.setDate(rs.getDate("date"));
+				dto.setImage(rs.getString("image"));
+				dto.setName(rs.getString("name"));
+				dto.setNum(rs.getInt("num"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSize(rs.getString("size"));
+				
+				goodsList.add(dto);
+			} // while
+			
+			System.out.println(" DAO : 상품 정보 조회");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return goodsList;
+	} // getGoodsList
+
+	
+	// getGoods
+	public GoodsDTO getGoods(int num) {
+		GoodsDTO dto = null;
+
+		try {
+			// 1.2. 디비 연결
+			con=getCon();
+			
+			// 3. sql 작성 & pstmt 객체 생성
+			sql = "select * from itwill_goods where num=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setInt(1, num);
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			if(rs.next()) {
+				dto = new GoodsDTO();
+				
+				dto.setAmount(rs.getInt("amount"));
+				dto.setBest(rs.getInt("best"));
+				dto.setCategory(rs.getString("category"));
+				dto.setColor(rs.getString("color"));
+				dto.setContent(rs.getString("content"));
+				dto.setDate(rs.getDate("date"));
+				dto.setImage(rs.getString("image"));
+				dto.setName(rs.getString("name"));
+				dto.setNum(rs.getInt("num"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSize(rs.getString("size"));
+			}
+			System.out.println(" DAO : 상품정보 1개 저장 ");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return dto;
+	} // getGoods
 
 }

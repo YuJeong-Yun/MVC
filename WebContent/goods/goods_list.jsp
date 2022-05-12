@@ -64,7 +64,7 @@
 
 		<!-- 게시판 -->
 		<article>
-			<h1>등록 상품 목록(관리자용)</h1>
+			<h1>등록 상품 목록(사용자용)</h1>
 			<table id="notice">
 				<tr>
 					<th class="ttitle" colspan="2">
@@ -73,14 +73,14 @@
 				</tr>
 				<tr>
 					<th class="tno" colspan="4">
-					전체 &nbsp;&nbsp;&nbsp;&nbsp;
-					인기상품 &nbsp;&nbsp;&nbsp;&nbsp;
-					외투 &nbsp;&nbsp;&nbsp;&nbsp;
-					정장 &nbsp;&nbsp;&nbsp;&nbsp;
-					티셔츠 &nbsp;&nbsp;&nbsp;&nbsp;
-					와이셔츠 &nbsp;&nbsp;&nbsp;&nbsp;
-					바지 &nbsp;&nbsp;&nbsp;&nbsp;
-					신발 &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go">전체</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=best">인기상품</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=outwear">외투</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=fulldress">정장</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=Tshirts">티셔츠</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=shirts">와이셔츠</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=pants">바지</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./GoodsList.go?item=shoes">신발</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					</th>
 				</tr>
 				
@@ -100,12 +100,15 @@
 					<tr>
 						<!-- 2) 열 만들기 -->
 						<c:forEach begin="1" end="${col }" step="1">
+							<c:if test="${size > goodsCnt }">
 							<td>
 								<img src="./shopUpload/${goodsList[goodsCnt].image.split(',')[0] }" width="160" height="160" /><br>
-								${goodsList[goodsCnt].name }<br>
+								
+								<a href="./GoodsDetail.go?num=${goodsList[goodsCnt].num }">${goodsList[goodsCnt].name }</a><br>
 								${goodsList[goodsCnt].price }원<br>
 							</td>
 							<c:set var="goodsCnt" value="${goodsCnt+1 }"></c:set>
+							</c:if>
 						</c:forEach>
 					</tr>
 				</c:forEach>
