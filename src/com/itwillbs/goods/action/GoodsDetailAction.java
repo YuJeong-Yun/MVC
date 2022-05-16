@@ -11,7 +11,7 @@ public class GoodsDetailAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println(" M : GodosDetailAction_execute() 실행 ");
+		System.out.println(" M : GoodsDetailAction_execute() 실행 ");
 		
 		// 전달 정보 저장
 		int num = Integer.parseInt(request.getParameter("num"));

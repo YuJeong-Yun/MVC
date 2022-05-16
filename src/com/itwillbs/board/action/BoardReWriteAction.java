@@ -3,7 +3,6 @@ package com.itwillbs.board.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 
 import com.itwillbs.board.db.BoardDAO;
 import com.itwillbs.board.db.BoardDTO;

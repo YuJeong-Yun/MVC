@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%
 	// index.jsp
@@ -12,6 +12,11 @@
 // 	response.sendRedirect("./BoardWrite.bo");
 // 	response.sendRedirect("./BoardList.bo");
 // 	response.sendRedirect("./GoodsList.ag");
- 	response.sendRedirect("./GoodsList.go");
+	
+	// 테스트용 ID정보 생성
+	session.setAttribute("id", "admin");
+	response.sendRedirect("./GoodsList.go");
+	
+	
 
 %>

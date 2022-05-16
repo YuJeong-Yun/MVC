@@ -26,6 +26,57 @@
 
  </script>
  <![endif]-->
+ <script type="text/javascript">
+ function isBasket(){
+	  // alert('test!!!');
+	  // 데이터 유효성 체크 (구매수량,옵션)
+	  
+	  // 최소 수량 체크
+	  if(document.gfr.amount.value < 1){
+		  alert("최소 구매 수량은 1개 입니다.");
+		  document.gfr.amount.focus();
+		  document.gfr.amount.value = 1;
+		  return;
+	  }
+	  
+	  // 최대 수량 체크
+	  if(document.gfr.amount.value > ${dto.amount}){
+		  alert("최대 구매 수량은 ${dto.amount}개 입니다.");
+		  document.gfr.amount.select();
+		  return;
+	  }
+	  
+	  // 사이즈
+	  if(document.gfr.size.value == ""){ // 옵션선택 X
+		  alert(" 사이즈를 선택하시오. ");
+	      document.gfr.size.focus();
+	      return;
+	  }
+	  
+	  // 컬러
+	  if(document.gfr.color.value == ""){ // 옵션선택 X
+		  alert(" 컬러를 선택하시오. ");
+	      document.gfr.color.focus();
+	      return;
+	  }
+	  
+	  ////////////////////////////////////////////////////
+	  // 옵션 선택완료
+	  var result = confirm("장바구니로 이동하겠습니까?");
+	  
+	  if(result){ //result == true 
+		  // 장바구니 페이지 이동 (submit)
+	     document.gfr.action="./BasketAdd.ba";
+		 document.gfr.submit();		  
+		  
+	  }else{
+		  //  ajax 사용해서 정보만 저장
+		  return;		  
+	  }
+ 		
+ 	} // isBasket
+ 	
+ </script>
 </head>
 <body>
 	<div id="wrap">
@@ -45,31 +96,39 @@
 
 		<!-- 게시판 -->
 		<article>
-			<h1>등록 상품 상세페이지(사용자용)</h1>
-			<form>
+		<h1>등록 상품 상세페이지(사용자용)</h1>
+		
+		<form action="" method="post" name="gfr">
+			<input type="hidden" name="num" value="${dto.num }">	
 			<table id="notice">
 				<tr>
-					<td><img src="./shopUpload/${dto.image.split(',')[0] }" width="300" height="300"></td>
-					<td>
-						<h2>상품명 : ${dto.name }<br></h2>
-						<h2>가격 : ${dto.price }<br></h2>
-						<h2>구매수량 : <input type="number" name="amount">개</h2>
-						<h2>남은수량 : ${dto.amount }<br></h2>
-						크기 : 
-							<select name="size">
-								<option> 크기를 선택하세요 </option>
-								<c:forEach var="size" items="${dto.size }">
-									<option>${size }</option>
-								</c:forEach>
-							</select name="color"> <br>
-						컬러 : 
-							<select>
-								<option> 컬러를 선택하세요 </option>
-								<c:forEach var="color" items="${dto.color }">
-									<option>${color }</option>
-								</c:forEach>
-							</select> <br>
-						
+				    <td>
+				    	<img src="./shopUpload/${dto.image.split(',')[0] }" 
+				    	   width="300" height="300">
+				    </td>
+				    <td>
+				        <h2>상품명 : ${dto.name } </h2>
+				        <h2>가격 : ${dto.price }원</h2>
+				        <h2>구매수량 : <input type="number" name="amount">개</h2>
+			 			<h2>남은수량 : ${dto.amount }개</h2>
+				        크기 :<%--  ${dto.size } --%>
+				            <select name="size">
+				               <option value=""> 크기를 선택하시오 </option>
+				               <c:forTokens var="size" items="${dto.size }" delims=",">
+				               		<option value="${size }">${size }</option>
+				               </c:forTokens>
+				            </select> <br>
+				            
+				        컬러 :
+				            <select name="color">
+				               <option value=""> 컬러를 선택하시오 </option>
+				               <c:forTokens var="color" items="${dto.color }" delims=",">
+				                    <option value="${color }">${color }</option>
+				               </c:forTokens>               
+				            </select> <br>
+							
+					         <a href="javascript:isBasket()">[장바구니 담기]</a><br>
+					         <a href="#">[바로 구매하기]</a><br>   
 					</td>
 				</tr>
 				<tr>
