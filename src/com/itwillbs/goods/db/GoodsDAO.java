@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.itwillbs.admin.goods.db.GoodsDTO;
+import com.itwillbs.basket.db.BasketDTO;
 
 public class GoodsDAO {
 	// 공통변수 선언
@@ -207,5 +208,36 @@ public class GoodsDAO {
 		
 		return dto;
 	} // getGoods
+
+
+	// 상품 수량 수정
+	public void updateAmount(List basketList) {
+		
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+
+			for(int i=0; i<basketList.size(); i++) {
+				BasketDTO bkDTO = (BasketDTO) basketList.get(i);
+				
+				// 3. sql 작성 & pstmt 객체 (for)
+				sql = "update itwill_goods set amount=amount-? where num=?";
+				pstmt = con.prepareStatement(sql);
+				// ???
+				pstmt.setInt(1, bkDTO.getB_g_amount());
+				pstmt.setInt(2, bkDTO.getB_g_num());
+
+				// 4. sql 실행
+				pstmt.executeUpdate();
+			} // for
+			
+			System.out.println("DAO : 상품재고 수량 변경 ");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	} // updateAmount
 
 }

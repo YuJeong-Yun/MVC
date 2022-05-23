@@ -44,7 +44,7 @@ public class BasketListAction implements Action {
 		
 		
 		// 페이지 이동("./basket/goods_basket_list.jsp")
-		forward.setPath("./goods/goods_basket_list.jsp");
+		forward.setPath("./basket/goods_basket_list.jsp");
 		forward.setRedirect(false);		
 		
 		return forward;

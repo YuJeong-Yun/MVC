@@ -16,6 +16,7 @@
 	// 테스트용 ID정보 생성
 	session.setAttribute("id", "admin");
 	response.sendRedirect("./GoodsList.go");
+// 	response.sendRedirect("./BasketList.ba");
 	
 	
 

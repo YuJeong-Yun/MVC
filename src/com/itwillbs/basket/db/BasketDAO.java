@@ -263,7 +263,31 @@ public class BasketDAO {
 		} finally {
 			closeDB();
 		}
-		
+	} // basketDelete
+	
+	
+	// 해당 아이디 모든 장바구니 삭제
+	public void basketDelete(String id) {
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			
+			// 3. sql 작성 & pstmt 객체
+			sql = "delete from itwill_basket where b_m_id=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setString(1, id);
+			
+			// 4. sql 실행
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO : 장바구니 삭제 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 	} // basketDelete
 	
 }
