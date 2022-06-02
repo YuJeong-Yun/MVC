@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.itwillbs.board.action.ActionForward;
+import com.itwillbs.order.db.OrderDTO;
 
 public class AdminGoodsDAO {
 
@@ -249,5 +250,131 @@ public class AdminGoodsDAO {
 			closeDB();
 		}
 	} // deleteGoods(num)
+
+	
+	// getAdminOrderList
+	public List<OrderDTO> getAdminOrderList() {
+		List<OrderDTO> adminOrderList = new ArrayList<>();
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();
+			// 3. sql & pstmt
+			sql = "select o_m_id, o_trade_num, o_g_name, o_g_amount, o_g_size, o_g_color, "
+					+ "sum(o_sum_money) as o_sum_money, o_trans_num, o_date,"
+					+ "o_status, o_trade_type from itwill_order "
+					+ "group by o_trade_num order by o_trade_num";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			// 4. 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			while(rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				
+				dto.setO_m_id(rs.getString("o_m_id"));
+				dto.setO_trade_num(rs.getString("o_trade_num"));
+				dto.setO_g_name(rs.getString("o_g_name"));
+				dto.setO_g_amount(rs.getInt("o_g_amount"));
+				dto.setO_g_size(rs.getString("o_g_size"));
+				dto.setO_g_color(rs.getString("o_g_color"));
+				dto.setO_sum_money(rs.getInt("o_sum_money"));
+				dto.setO_trans_num(rs.getString("o_trans_num"));
+				dto.setO_date(rs.getDate("o_date"));
+				dto.setO_status(rs.getInt("o_status"));
+				dto.setO_trade_type(rs.getString("o_trade_type"));
+				
+				adminOrderList.add(dto);
+			}
+
+			System.out.println(" DAO : 주문정보 저장완료 ");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+		return adminOrderList;
+	} // getAdminOrderList
+
+
+	// adminOrderDetail()
+	public List adminOrderDetail(String trade_num) {
+		
+		List<OrderDTO> orderDetailList = new ArrayList<>();
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();
+			
+			// 3. sql & pstmt
+			sql = "select * from itwill_order where o_trade_num=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setString(1, trade_num);
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			while(rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				
+				dto.setO_trade_num(rs.getString("o_trade_num"));
+				dto.setO_g_name(rs.getString("o_g_name"));
+				dto.setO_g_amount(rs.getInt("o_g_amount"));
+				dto.setO_g_size(rs.getString("o_g_size"));
+				dto.setO_g_color(rs.getString("o_g_color"));
+				dto.setO_sum_money(rs.getInt("o_sum_money"));
+				dto.setO_trans_num(rs.getString("o_trans_num"));
+				dto.setO_date(rs.getDate("o_date"));
+				dto.setO_status(rs.getInt("o_status"));
+				dto.setO_trade_type(rs.getString("o_trade_type"));
+				
+				orderDetailList.add(dto);
+			}
+			System.out.println(" DAO : 주문 상세정보 저장완료!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return orderDetailList;
+		
+	} // adminOrderDetail()
+
+
+	// updateOrder
+	public void updateOrder(OrderDTO dto) {
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();
+			
+			// 3. sql & pstmt
+			sql = "update itwill_order set o_status=?, o_trans_num=? "
+					+ "where o_trade_num=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setInt(1, dto.getO_status());
+			pstmt.setString(2, dto.getO_trans_num());
+			pstmt.setString(3, dto.getO_trade_num());
+			
+			// 4. 실행
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO : 주문 상태, 운송장 번호 변경완료 ");
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+	} // updateOrder
 
 }

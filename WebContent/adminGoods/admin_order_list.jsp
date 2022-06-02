@@ -64,54 +64,47 @@
 
 		<!-- 게시판 -->
 		<article>
-			<h1>등록 상품 목록(관리자용)</h1>
+			<h1>주문 목록</h1>
 			<table id="notice">
 				<tr>
-					<th class="ttitle" colspan="2">
-						<a href="./GoodsAdd.ag">상품<br>등록하기</a>
-					</th>
-					<th class="ttitle" colspan="2">
-						<a href="./OrderListAll.ag">주문<br>확인하기</a>
-					</th>
-				</tr>
-				<tr>
-					<th class="tno">번호</th>
-					<th class="ttitle">사진</th>
+					<th class="tno">주문번호</th>
+					<th class="tno">사용자명</th>
 					<th class="ttitle">상품명</th>
-					<th class="ttitle">카테<br>고리</th>
-					<th class="ttitle">가격</th>
-					<th class="ttitle">수량</th>
-					<th class="ttitle">등록일</th>
-					<th class="ttitle">수정<br>삭제</th>
+					<th class="ttitle">결제방법</th>
+					<th class="ttitle">주문금액</th>
+					<th class="ttitle">주문상태</th>
+					<th class="ttitle">주문일시</th>
+					<th class="ttitle">운송장번호</th>
 				</tr>
-				<c:forEach var="goods" items="${requestScope.goodsList }">
+				
+				<c:forEach var="ordto" items="${adminOrderList  }">
 					<tr>
-						<td>${goods.num }</td>
-						<td><img src="./shopUpload/${goods.image.split(",")[0] }" width="50" height="50"/></td>
-						<td>${goods.name }</td>
-						<td>${goods.category }</td>
-						<td>${goods.price }</td>
-						<td>${goods.amount }</td>
-						<td>${goods.date }</td>
 						<td>
-							<a href="./GoodsModify.ag?num=${goods.num }">수정</a>
-							<br>
-							<a href="./GoodsDeleteAction.ag?num=${goods.num }">삭제</a>
+							<a href="./OrderDetail.or?trade_num=${ordto.o_trade_num }">${ordto.o_trade_num }</a>
+						</td>
+						<td>${ordto.o_m_id }</td>
+						<td>${ordto.o_g_name }</td>
+						<td>${ordto.o_trade_type }</td>
+						<td>${ordto.o_sum_money }원</td>
+						<!-- 0-대기중, 1-발송준비, 2-발송완료, 3-배송중, 4-배송완료, 5-주문취소 -->
+						<c:if test="${ordto.o_status == 0 }"> <td>대기중</td> </c:if>
+					    <c:if test="${ordto.o_status == 1 }"> <td>발송준비</td> </c:if>
+					    <c:if test="${ordto.o_status == 2 }"> <td>발송완료</td> </c:if>
+					    <c:if test="${ordto.o_status == 3 }"> <td>배송중</td> </c:if>
+					    <c:if test="${ordto.o_status == 4 }"> <td>배송완료</td> </c:if>
+					    <c:if test="${ordto.o_status == 5 }"> <td>주문취소</td> </c:if>
+					    
+						<td>${ordto.o_date }</td>
+						<td>${ordto.o_trans_num }</td>
+						
+						<td>
+							<a href="./AdminOrderModify.ag?trade_num=${ordto.o_trade_num }">수정</a>
 						</td>
 					</tr>
 				</c:forEach>
 				
-<%-- 				<%for(int i=0;i<boardList.size();i++) {  --%>
-<!--  					BoardDTO dto = (BoardDTO)boardList.get(i); -->
-<%-- 				%> --%>
-<!-- 				<tr> -->
-<%-- 					<td><%= dto.getNum() %></td> --%>
-<%-- 					<td class="left"><%=dto.getSubject() %></td> --%>
-<%-- 					<td><%=dto.getName() %></td> --%>
-<%-- 					<td><%=dto.getDate() %></td> --%>
-<%-- 					<td><%=dto.getReadcount() %></td> --%>
-<!-- 				</tr> -->
-<%-- 				<%} %> --%>
+				
+				
 			</table>
 			
 			

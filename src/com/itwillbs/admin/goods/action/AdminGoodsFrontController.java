@@ -114,6 +114,38 @@ public class AdminGoodsFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/OrderListAll.ag")) {
+			System.out.println(" C : /OrderListAll.ag 호출");
+			
+			action = new OrderListAllAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/AdminOrderModify.ag")) {
+			System.out.println(" C : /AdminOrderModify.ag 호출");
+			
+			action = new AdminOrderModifyAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/AdminOrderUpdate.ag")) {
+			System.out.println(" C : /AdminOrderUpdate.ag 호출 ");
+			
+			// AdminOrderUpdateAction 객체
+			action = new AdminOrderUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		System.out.println(" C : 2. 가상 주소 매핑 끝\n ");
