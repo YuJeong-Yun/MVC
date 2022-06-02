@@ -64,6 +64,31 @@ public class OrderFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/OrderList.or")) {
+			System.out.println(" C : /OrderList.or 호출");
+			// OrderListAction() 객체(DB 사용, 화면 출력)
+			
+			action = new OrderListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/OrderDetail.or")) {
+			System.out.println(" C : /OrderDetail.or 호출");
+			// OrderDetailAction (DB 사용, 화면출력)
+			
+			action = new OrderDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 		}
 	
 		
